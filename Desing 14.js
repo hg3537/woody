@@ -20,7 +20,6 @@ setInterval(() =>
 let aboutcontainer = document.querySelector(`.about`);
 let settop = aboutcontainer.offsetTop;
 let countbox = document.querySelectorAll(`.box-count .count-num`);
-console.log(countbox);
 let start = false;
 window.onscroll = function ()
 {
@@ -62,37 +61,39 @@ navitems.forEach(navitem =>
     });
 });
 // tabs
-let btngroup = document.querySelectorAll(`.btn-group .btn`);
-let Projects = document.querySelector(`.Projects`);
-let rowproject = document.querySelectorAll(`.row-project`);
 
-
-Projects.addEventListener(`click`, (e) =>
+const btngroup = Array.from(document.querySelectorAll(`.project-btn .btn`));
+const rowproject = document.querySelectorAll(`.row-project`);
+btngroup.forEach(btn =>
 {
-    const id = e.target.dataset.id;
-    btngroup.forEach(btn =>
+    btn.addEventListener(`click`, e =>
     {
-        btn.classList.remove(`tab-btn-active`);
-        e.target.classList.add(`tab-btn-active`);
+        var id = e.target.dataset.id;
+        btngroup.forEach(btn =>
+        {
+            btn.classList.remove(`tab-btn-active`);
+            e.currentTarget.classList.add(`tab-btn-active`);
+        });
+        if (id === `row-project`)
+        {
+            rowproject.forEach(row =>
+            {
+                row.classList.remove(`d-none`);
+            });
+
+        } else
+        {
+            rowproject.forEach(row =>
+            {
+                row.classList.add(`d-none`);
+            });
+            let activerow = document.getElementById(id);
+            activerow.classList.remove(`d-none`);
+        }
+
     });
-    if (id == `row-project`)
-    {
-        rowproject.forEach(row =>
-        {
-            row.classList.remove(`d-none`);
-        });
-
-    } else
-    {
-        rowproject.forEach(row =>
-        {
-            row.classList.add(`d-none`);
-        });
-        const activerow = document.getElementById(id);
-        activerow.classList.remove(`d-none`);
-    }
-
 });
+
 // anamations
 
 const observteam = new IntersectionObserver(opations =>
@@ -103,6 +104,30 @@ const observteam = new IntersectionObserver(opations =>
     });
 });
 observteam.observe(document.querySelector(`.team-container`));
+/* dark mode */
+let darkmode = document.querySelector(`.dark-mode`);
+darkmode.addEventListener(`click`, () =>
+{
+    document.querySelector(`.Carousel`).classList.toggle(`dark-bg`)
+    document.querySelector(`.about`).classList.toggle(`dark-bg`)
+    document.querySelector(`.feature`).classList.toggle(`dark-bg`)
+    document.querySelector(`.team`).classList.toggle(`e4-bg`)
+    document.querySelector(`.Projects`).classList.toggle(`e4-bg`)
+    document.querySelector(`.service`).classList.toggle(`e4-bg`)
+    document.querySelectorAll(`.card`).forEach(card =>
+    {
+        card.classList.toggle(`dark-bg`)
+})
+    document.querySelectorAll(`.card-header`).forEach(head =>
+    {
+        head.classList.toggle(`dark-border`);
+    });
+    document.querySelectorAll(`.box-count`).forEach(head =>
+    {
+        head.classList.toggle(`dark-border`);
+    });
+   
+})
 
 
 
