@@ -8,7 +8,16 @@
     background-color: var(--primary);
     color: #fff;
 }
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-thumb{
+    background: var(--dark);
+}
 
+::-webkit-scrollbar-track {
+        background: var(--primary);
+}
 html {
     font-family: 'Alexandria', sans-serif;
     font-family: 'Amiri', serif;
@@ -305,4 +314,19 @@ html {
 .fadeup {
     opacity: 1;
     transform: none;
+}
+.dark-bg
+{
+    background-color: var(--dark) !important;
+    color: var(--light) !important;
+    /* 1 ,2,4 */
+}
+.e4-bg{
+    background-color: #e4e4e4;
+    /* 3,4,5 */
+
+
+}
+.dark-border{
+    border-color: var(--primary) !important;
 }
